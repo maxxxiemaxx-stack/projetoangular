@@ -1,0 +1,43 @@
+<main *ngIf="produto as p; else carregando" class="detalhe-container">
+
+  <button class="btn-voltar" (click)="voltarHome()">← Voltar</button>
+
+  <div class="imagem-container">
+    <img [src]="p.imagem" [alt]="p.nome" class="produto-imagem" />
+  </div>
+
+  <div class="detalhes">
+    <h1>{{ p.nome }}</h1>
+    <p class="artista">{{ p.artista }} <span *ngIf="p.ano">— {{ p.ano }}</span></p>
+
+    <p *ngIf="p.gravadora"><strong>Gravadora:</strong> {{ p.gravadora }}</p>
+    <p *ngIf="p.genero"><strong>Gênero:</strong> {{ p.genero }}</p>
+    <p *ngIf="p.formato"><strong>Formato:</strong> {{ p.formato }}</p>
+
+    <p class="preco">R$ {{ p.preco | number: '1.2-2' }}</p>
+
+    <div class="acoes">
+      <label for="quantidade">Quantidade:</label>
+      <input id="quantidade" type="number" [(ngModel)]="quantidade" min="1" />
+      <button (click)="adicionarAoCarrinho()" class="btn-carrinho">
+        🛒 Adicionar ao Carrinho
+      </button>
+    </div>
+
+    <section class="descricao" *ngIf="p.descricao">
+      <h3>Descrição</h3>
+      <p>{{ p.descricao }}</p>
+    </section>
+
+    <section class="faixas" *ngIf="p.faixas?.length">
+      <h3>Faixas</h3>
+      <ul>
+        <li *ngFor="let faixa of p.faixas">{{ faixa }}</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<ng-template #carregando>
+  <p style="text-align:center; margin-top: 3rem;">Carregando produto...</p>
+</ng-template>

@@ -1,0 +1,80 @@
+<header class="navbar">
+  <div class="faixa-laranja">
+    <img
+      src="assets/img/logo.png"
+      alt="Logo TipToe"
+      class="logo"
+      loading="lazy"
+      (error)="onImageError($event)"
+    />
+    <h1 class="titulo">Descubra o Som Clássico</h1>
+  </div>
+
+  <div class="faixa-azul">
+    <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="ativo"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Início</a
+          >
+        </li>
+        <li>
+          <a routerLink="/catalogo" routerLinkActive="ativo">Catálogo</a>
+        </li>
+        <li>
+          <a routerLink="/login" routerLinkActive="ativo">Login/Cadastro</a>
+        </li>
+        <li>
+          <a routerLink="/carrinho" routerLinkActive="ativo">Carrinho</a>
+        </li>
+        <li>
+          <a routerLink="/contato" routerLinkActive="ativo">Contato</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="conteudo" role="main">
+  <section class="produtos" aria-labelledby="titulo-produtos">
+    <h2 id="titulo-produtos">Produtos em Destaque</h2>
+
+    <div class="produtos-container">
+      <div
+        class="card"
+        *ngFor="let p of produtos; trackBy: trackByProduto"
+      >
+        <img
+          [src]="p.imagem"
+          [alt]="p.nome"
+          class="produto-imagem"
+          loading="lazy"
+          (error)="onImageError($event)"
+          (click)="verDetalhes(p)"
+          style="cursor: pointer;"
+        />
+        <h3 (click)="verDetalhes(p)" style="cursor: pointer;">{{ p.nome }}</h3>
+        <p>{{ p.artista }}</p>
+        <strong class="preco">R$ {{ p.preco | number: '1.2-2' }}</strong>
+
+        <button class="btn-adicionar" (click)="adicionarAoCarrinho(p)">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+    </div>
+
+    <div class="ver-catalogo-container">
+      <a routerLink="/catalogo" class="btn-catalogo">
+        🎵 Ver Catálogo Completo
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <p>© 2025 TipToe – Todos os direitos reservados</p>
+  <p>Siga-nos nas redes sociais: @tiptoe.vinil</p>
+</footer>

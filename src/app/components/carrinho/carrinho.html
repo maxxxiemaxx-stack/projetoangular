@@ -1,0 +1,54 @@
+<div class="cart-container">
+  <h1>Seu Carrinho</h1>
+
+  <div *ngIf="itens.length === 0" class="empty-cart">
+    <p>Seu carrinho está vazio.</p>
+    <button class="continue-btn" routerLink="/">Voltar para a loja</button>
+  </div>
+
+  <div *ngIf="itens.length > 0" class="cart-box">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itens">
+          <td class="product-info">
+            <img [src]="item.product.imageUrl" alt="{{ item.product.title }}" />
+            <div>
+              <strong>{{ item.product.title }}</strong>
+              <p>{{ item.product.artist }}</p>
+            </div>
+          </td>
+          <td>
+            <input
+              type="number"
+              [value]="item.quantity"
+              min="1"
+              (change)="atualizarQuantidade(item, $event)"
+            />
+          </td>
+          <td>R$ {{ item.product.price | number: '1.2-2' }}</td>
+          <td>
+            <button class="remove-btn" (click)="removerItem(item)">X</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <p><strong>Subtotal:</strong> R$ {{ subtotal | number: '1.2-2' }}</p>
+      <p class="total"><strong>Total:</strong> R$ {{ total | number: '1.2-2' }}</p>
+
+      <div class="buttons">
+        <button class="continue-btn" routerLink="/">Continuar comprando</button>
+        <button class="checkout-btn">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+</div>

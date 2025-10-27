@@ -1,0 +1,57 @@
+<div class="pagina-cadastro">
+  <div class="cadastro-card">
+    <button class="voltar" (click)="voltar()">← Voltar</button>
+
+    <h2>Cadastrar</h2>
+
+    <form (ngSubmit)="onCadastro()" class="form-cadastro">
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        [(ngModel)]="nome"
+        placeholder="Seu nome completo"
+        required
+      />
+
+      <label for="email">E-mail:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="seuemail@email.com"
+        required
+      />
+
+      <label for="senha">Senha:</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        [(ngModel)]="senha"
+        placeholder="Digite sua senha"
+        required
+      />
+
+      <label for="confirmarSenha">Confirmar senha:</label>
+      <input
+        type="password"
+        id="confirmarSenha"
+        name="confirmarSenha"
+        [(ngModel)]="confirmarSenha"
+        placeholder="Repita sua senha"
+        required
+      />
+
+      <button type="submit" class="botao-cadastrar">Cadastrar</button>
+    </form>
+
+    <p class="cadastro-texto">
+      Já tem uma conta?
+      <button class="cadastro-btn" (click)="irParaLogin()">Entrar</button>
+    </p>
+  </div>
+</div>
+

@@ -1,0 +1,39 @@
+<main class="catalogo-container">
+  <div class="top-bar">
+    <button class="btn-voltar" (click)="voltarHome()">Voltar</button>
+    <h2 class="titulo">Catálogo Completo</h2>
+  </div>
+
+  <div class="carrossel-wrapper">
+    <button class="seta esquerda" (click)="scrollEsquerda()">&#10094;</button>
+
+    <div class="produtos-carrossel" #carrossel>
+      <div
+        class="card"
+        *ngFor="let p of produtos; trackBy: trackByProduto"
+        (click)="verDetalhes(p)"
+      >
+        <img
+          [src]="p.imagem"
+          [alt]="p.nome"
+          class="produto-imagem"
+          loading="lazy"
+          (error)="onImageError($event)"
+        />
+        <h3>{{ p.nome }}</h3>
+        <p>{{ p.artista }}</p>
+        <strong class="preco">R$ {{ p.preco | number: '1.2-2' }}</strong>
+
+        <button
+          class="btn-adicionar"
+          (click)="adicionarAoCarrinho(p); $event.stopPropagation()"
+        >
+          Adicionar ao Carrinho
+        </button>
+      </div>
+    </div>
+
+    <button class="seta direita" (click)="scrollDireita()">&#10095;</button>
+  </div>
+</main>
+

@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #f8e6ce;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+
+.faixa-laranja {
+  background-color: #d55228;
+  color: white;
+  padding: 35px 0 25px 0;
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.faixa-laranja h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.faixa-azul {
+  background-color: #006d6f;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.faixa-azul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.faixa-azul li {
+  display: inline-block;
+  margin: 0 18px;
+}
+
+.faixa-azul a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.faixa-azul a:hover {
+  color: #ffb38a;
+}
+
+
+.produtos {
+  text-align: center;
+  padding: 50px 15px;
+  background-color: #f2f2f2;
+}
+
+.produtos h2 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.produtos-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 18px;
+  width: 230px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 8px 0 4px;
+}
+
+.card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.card .preco {
+  color: #d55228;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+
+.btn-adicionar {
+  background-color: #006d6f;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.btn-adicionar:hover {
+  background-color: #004f50;
+  transform: scale(1.03);
+}
+
+.btn-adicionar:active {
+  background-color: #003f3f;
+  transform: scale(0.98);
+}
+
+
+.ver-catalogo-container {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.btn-catalogo {
+  display: inline-block;
+  background-color: #b73c35; /* mesmo vermelho do catálogo */
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-catalogo:hover {
+  background-color: #962f29;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn-catalogo:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  background-color: #004f50;
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 0.9rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 3px 0;
+}
+
+
+@media (max-width: 768px) {
+  .faixa-azul li {
+    margin: 0 8px;
+  }
+
+  .logo {
+    width: 110px;
+  }
+
+  .card {
+    width: 180px;
+  }
+
+  .btn-adicionar {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .btn-catalogo {
+    font-size: 1rem;
+    padding: 0.9rem 2rem;
+  }
+}
