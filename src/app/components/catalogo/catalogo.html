@@ -22,12 +22,9 @@
         />
         <h3>{{ p.nome }}</h3>
         <p>{{ p.artista }}</p>
-        <strong class="preco">R$ {{ p.preco | number: '1.2-2' }}</strong>
+        <strong class="preco">R$ {{ p.preco | number : '1.2-2' }}</strong>
 
-        <button
-          class="btn-adicionar"
-          (click)="adicionarAoCarrinho(p); $event.stopPropagation()"
-        >
+        <button class="btn-adicionar" (click)="adicionarAoCarrinho(p); $event.stopPropagation()">
           Adicionar ao Carrinho
         </button>
       </div>
@@ -36,4 +33,3 @@
     <button class="seta direita" (click)="scrollDireita()">&#10095;</button>
   </div>
 </main>
-

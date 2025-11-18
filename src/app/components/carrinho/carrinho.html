@@ -16,24 +16,32 @@
           <th>Remover</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let item of itens">
           <td class="product-info">
-            <img [src]="item.product.imageUrl" alt="{{ item.product.title }}" />
+            <img [src]="item.product?.imagem" [alt]="item.product?.nome" />
+
             <div>
-              <strong>{{ item.product.title }}</strong>
-              <p>{{ item.product.artist }}</p>
+              <strong>{{ item.product?.nome }}</strong>
+              <p>{{ item.product?.artista }}</p>
             </div>
           </td>
+
           <td>
             <input
               type="number"
-              [value]="item.quantity"
               min="1"
+              [value]="item.quantity"
               (change)="atualizarQuantidade(item, $event)"
             />
           </td>
-          <td>R$ {{ item.product.price | number: '1.2-2' }}</td>
+
+          <td>
+            R$
+            {{ item.product?.preco | number : '1.2-2' }}
+          </td>
+
           <td>
             <button class="remove-btn" (click)="removerItem(item)">X</button>
           </td>
@@ -42,8 +50,8 @@
     </table>
 
     <div class="summary">
-      <p><strong>Subtotal:</strong> R$ {{ subtotal | number: '1.2-2' }}</p>
-      <p class="total"><strong>Total:</strong> R$ {{ total | number: '1.2-2' }}</p>
+      <p><strong>Subtotal:</strong> R$ {{ subtotal | number : '1.2-2' }}</p>
+      <p class="total"><strong>Total:</strong> R$ {{ total | number : '1.2-2' }}</p>
 
       <div class="buttons">
         <button class="continue-btn" routerLink="/">Continuar comprando</button>

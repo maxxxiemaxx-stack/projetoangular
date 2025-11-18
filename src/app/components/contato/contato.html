@@ -1,8 +1,6 @@
 <div class="pagina-contato">
   <div class="contato-card">
-    <button type="button" class="voltar" (click)="voltar()">
-      ← <span>Voltar</span>
-    </button>
+    <button class="voltar" (click)="voltar()">← Voltar</button>
 
     <h1>Entre em Contato</h1>
     <p class="subtitulo">
@@ -10,41 +8,35 @@
       Envie uma mensagem para nossa equipe!
     </p>
 
-    <form (ngSubmit)="enviarMensagem()" class="form-contato">
+    <form [formGroup]="form" (ngSubmit)="enviarMensagem()" class="form-contato">
       <label for="nome">Nome:</label>
-      <input
-        type="text"
-        id="nome"
-        name="nome"
-        [(ngModel)]="nome"
-        placeholder="Seu nome completo"
-        required
-      />
+      <input id="nome" formControlName="nome" placeholder="Seu nome completo" />
+      <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid" class="erro">
+        <small *ngIf="form.get('nome')?.errors?.['required']">Nome é obrigatório.</small>
+      </div>
 
       <label for="email">E-mail:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="email"
-        placeholder="seuemail@email.com"
-        required
-      />
+      <input id="email" formControlName="email" placeholder="seuemail@email.com" />
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="erro">
+        <small *ngIf="form.get('email')?.errors?.['required']">E-mail é obrigatório.</small>
+        <small *ngIf="form.get('email')?.errors?.['email']">E-mail inválido.</small>
+      </div>
 
       <label for="mensagem">Mensagem:</label>
       <textarea
         id="mensagem"
-        name="mensagem"
-        [(ngModel)]="mensagem"
+        formControlName="mensagem"
         rows="4"
         placeholder="Escreva sua mensagem aqui..."
-        required
       ></textarea>
+      <div *ngIf="form.get('mensagem')?.touched && form.get('mensagem')?.invalid" class="erro">
+        <small *ngIf="form.get('mensagem')?.errors?.['required']">Mensagem é obrigatória.</small>
+        <small *ngIf="form.get('mensagem')?.errors?.['minlength']">A mensagem é muito curta.</small>
+      </div>
 
-      <button type="submit" class="botao-enviar">Enviar Mensagem</button>
+      <button type="submit" class="botao-enviar" [disabled]="form.invalid">Enviar Mensagem</button>
     </form>
   </div>
-
 
   <footer class="rodape">
     <p>© 2025 TipToe – Todos os direitos reservados</p>

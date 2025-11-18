@@ -1,0 +1,158 @@
+{
+  "produtos": [
+    {
+      "id": "abbey-road",
+      "nome": "Abbey Road",
+      "artista": "The Beatles",
+      "preco": 109,
+      "imagem": "assets/img/abbey-road.jpg",
+      "ano": 1969,
+      "genero": "Rock",
+      "gravadora": "Apple Records",
+      "formato": "Vinil 180g (Edição Remasterizada)",
+      "descricao": "Um dos álbuns mais icônicos dos Beatles, lançado em 1969. Marca a maturidade artística da banda com faixas inesquecíveis e produção impecável.",
+      "faixas": [
+        "Come Together",
+        "Something",
+        "Octopus’s Garden",
+        "Here Comes the Sun",
+        "Oh! Darling"
+      ]
+    },
+    {
+      "id": "sgt-pepper",
+      "nome": "Sgt. Pepper's Lonely Hearts Club Band",
+      "artista": "The Beatles",
+      "preco": 199.9,
+      "imagem": "assets/img/sgt-pepper.jpg",
+      "ano": 1967,
+      "genero": "Rock Psicodélico",
+      "gravadora": "Parlophone",
+      "formato": "Vinil 180g (Edição Limitada)",
+      "descricao": "Considerado um dos álbuns mais influentes da história da música...",
+      "faixas": [
+        "Sgt. Pepper's Lonely Hearts Club Band",
+        "With a Little Help from My Friends",
+        "Lucy in the Sky with Diamonds",
+        "A Day in the Life"
+      ]
+    },
+    {
+      "id": "dark-side",
+      "nome": "The Dark Side of the Moon",
+      "artista": "Pink Floyd",
+      "preco": 179.9,
+      "imagem": "assets/img/dark-side.png",
+      "ano": 1973,
+      "genero": "Rock Progressivo",
+      "gravadora": "Harvest Records",
+      "formato": "Vinil 180g (Remasterizado)",
+      "descricao": "O lendário álbum de 1973, conhecido por seu som psicodélico e experimental.",
+      "faixas": [
+        "Time",
+        "Money",
+        "Us and Them",
+        "The Great Gig in the Sky"
+      ]
+    },
+    {
+      "id": "kind-of-blue",
+      "nome": "Kind of Blue",
+      "artista": "Miles Davis",
+      "preco": 129,
+      "imagem": "assets/img/kind-of-blue.png",
+      "ano": 1959,
+      "genero": "Jazz",
+      "gravadora": "Columbia Records",
+      "formato": "Vinil",
+      "descricao": "Álbum clássico do jazz, lançado em 1959.",
+      "faixas": [
+        "So What",
+        "Freddie Freeloader",
+        "Blue in Green",
+        "All Blues"
+      ]
+    },
+    {
+      "id": "back-to-black",
+      "nome": "Back to Black",
+      "artista": "Amy Winehouse",
+      "preco": 159.9,
+      "imagem": "assets/img/back-to-black.jpg",
+      "ano": 2006,
+      "genero": "Soul / Jazz",
+      "gravadora": "Island Records",
+      "formato": "Vinil 180g",
+      "descricao": "Segundo álbum de Amy Winehouse, lançado em 2006.",
+      "faixas": [
+        "Rehab",
+        "You Know I’m No Good",
+        "Back to Black",
+        "Tears Dry on Their Own"
+      ]
+    },
+    {
+      "id": "nevermind",
+      "nome": "Nevermind",
+      "artista": "Nirvana",
+      "preco": 149.9,
+      "imagem": "assets/img/nevermind.jpg",
+      "ano": 1991,
+      "genero": "Grunge",
+      "gravadora": "DGC Records",
+      "formato": "Vinil 180g",
+      "descricao": "O álbum que definiu o grunge dos anos 90.",
+      "faixas": [
+        "Smells Like Teen Spirit",
+        "Come as You Are",
+        "Lithium",
+        "In Bloom"
+      ]
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Maxine Dias",
+      "email": "exemplo@gmail.com",
+      "senha": "aaa567"
+    },
+    {
+      "id": "3386",
+      "nome": "User Teste",
+      "email": "segundoteste@gmail.com",
+      "senha": "aaa567"
+    }
+  ],
+  "mensagens": [],
+  "carrinho": [
+    {
+      "id": "0736",
+      "userId": "181e",
+      "productId": "sgt-pepper",
+      "quantity": 1
+    },
+    {
+      "id": "a446",
+      "userId": "3386",
+      "productId": "abbey-road",
+      "quantity": 1
+    },
+    {
+      "id": "c7b8",
+      "userId": "1",
+      "productId": "abbey-road",
+      "quantity": 1
+    },
+    {
+      "id": "9d4b",
+      "productId": "sgt-pepper",
+      "quantity": 1
+    },
+    {
+      "id": "a164",
+      "productId": "abbey-road",
+      "quantity": 1
+    }
+  ]
+}

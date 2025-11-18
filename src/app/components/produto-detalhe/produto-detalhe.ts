@@ -1,9 +1,11 @@
+// components/produto-detalhe/produto-detalhe.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PRODUTOS, Produto } from '../../services/produtos';
-import { Cart } from '../../services/cart';
+import { ProdutosService } from '../../services/produtos.service';
+import { Produto } from '../../models/produtos.model';
+import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
   selector: 'app-produto-detalhe',
@@ -18,50 +20,43 @@ export class ProdutoDetalheComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: Cart,
+    private produtosService: ProdutosService,
+    private carrinhoService: CarrinhoService,
     private router: Router
   ) {}
 
   ngOnInit() {
-
     const idParam = this.route.snapshot.paramMap.get('id');
-    if (!idParam) return;
-
-
-    const id = isNaN(Number(idParam)) ? idParam : Number(idParam);
-
-
-    this.produto = PRODUTOS.find(p => p.id === id);
-
-    if (!this.produto) {
-      console.error('Produto não encontrado:', idParam);
+    if (!idParam) {
       this.router.navigate(['/catalogo']);
+      return;
     }
+
+    this.produtosService.buscar(idParam).subscribe({
+      next: p => this.produto = p,
+      error: err => {
+        console.error('Produto não encontrado:', err);
+        this.router.navigate(['/catalogo']);
+      }
+    });
   }
 
   adicionarAoCarrinho() {
-    if (!this.produto) return;
-
-    this.cartService.addToCart({
-      product: {
-        id: this.produto.id,
-        title: this.produto.nome,
-        artist: this.produto.artista,
-        imageUrl: this.produto.imagem,
-        price: this.produto.preco
-      },
-      quantity: this.quantidade
-    });
-
-    alert(`${this.produto.nome} foi adicionado ao carrinho!`);
+  if (!this.carrinhoService.isLogged()) {
+    alert("Você precisa estar logado para adicionar ao carrinho.");
+    this.router.navigate(['/login']);
+    return;
   }
+
+  this.carrinhoService.adicionar(this.produto!.id, this.quantidade)
+    .subscribe(() => {
+      alert(`${this.produto!.nome} foi adicionado ao carrinho!`);
+    });
+}
+
 
   voltarHome() {
-
-    if (window.history.length > 1) {
-      this.router.navigateByUrl('/catalogo');
-    } else {
-      this.router.navigate(['/']);
-    }
+    this.router.navigateByUrl('/catalogo');
   }
 }
+

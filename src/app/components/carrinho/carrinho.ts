@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Cart, CartItem } from '../../services/cart';
+import { CarrinhoService, CarrinhoItem } from '../../services/carrinho.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -12,43 +13,65 @@ import { Cart, CartItem } from '../../services/cart';
   styleUrls: ['./carrinho.css'],
 })
 export class CarrinhoComponent implements OnInit {
-  itens: CartItem[] = [];
+
+  itens: CarrinhoItem[] = [];
   subtotal = 0;
   total = 0;
 
-  constructor(private cart: Cart) {}
+  constructor(
+    private carrinhoService: CarrinhoService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.carregarCarrinho();
+  }
 
-    this.itens = this.cart.getItems();
-    this.atualizarTotal();
+  carregarCarrinho() {
+    const userId = this.authService.userId;
+    if (!userId) return;
+
+    this.carrinhoService.carregarCarrinho();
+
+    this.carrinhoService.items$.subscribe(items => {
+      this.itens = items;
+      this.atualizarTotal();
+    });
   }
 
   atualizarTotal() {
     this.subtotal = this.itens.reduce(
-      (acc, i) => acc + i.product.price * i.quantity,
+      (acc, item) => acc + (item.quantity * 1),
       0
     );
     this.total = this.subtotal;
   }
 
-  removerItem(item: CartItem) {
-    this.cart.removeFromCart(item.product.id);
-    this.itens = this.cart.getItems();
-    this.atualizarTotal();
+  atualizarQuantidade(item: CarrinhoItem, event: Event) {
+    const novaQtd = +(event.target as HTMLInputElement).value;
+
+    this.carrinhoService.atualizarQuantidade(item.id!, novaQtd).subscribe({
+      next: () => this.carregarCarrinho(),
+      error: err => console.error('Erro ao atualizar quantidade:', err)
+    });
   }
 
-  atualizarQuantidade(item: CartItem, event: Event) {
-    const novaQtd = +(event.target as HTMLInputElement).value;
-    this.cart.updateQuantity(item.product.id, novaQtd);
-    this.itens = this.cart.getItems();
-    this.atualizarTotal();
+  removerItem(item: CarrinhoItem) {
+    this.carrinhoService.removerItem(item.id!).subscribe({
+      next: () => this.carregarCarrinho(),
+      error: err => console.error('Erro ao remover item:', err)
+    });
   }
 
   limparCarrinho() {
-    this.cart.clearCart();
-    this.itens = [];
-    this.atualizarTotal();
+    const userId = this.authService.userId;
+    if (!userId) return;
+
+    this.carrinhoService.limparPorUsuario(userId).subscribe({
+      next: () => this.carregarCarrinho(),
+      error: err => console.error('Erro ao limpar o carrinho:', err)
+    });
   }
 }
+
 

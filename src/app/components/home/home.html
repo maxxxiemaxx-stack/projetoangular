@@ -14,10 +14,7 @@
     <nav aria-label="Menu principal">
       <ul class="menu">
         <li>
-          <a
-            routerLink="/"
-            routerLinkActive="ativo"
-            [routerLinkActiveOptions]="{ exact: true }"
+          <a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }"
             >Início</a
           >
         </li>
@@ -43,10 +40,7 @@
     <h2 id="titulo-produtos">Produtos em Destaque</h2>
 
     <div class="produtos-container">
-      <div
-        class="card"
-        *ngFor="let p of produtos; trackBy: trackByProduto"
-      >
+      <div class="card" *ngFor="let p of produtos; trackBy: trackByProduto">
         <img
           [src]="p.imagem"
           [alt]="p.nome"
@@ -54,11 +48,11 @@
           loading="lazy"
           (error)="onImageError($event)"
           (click)="verDetalhes(p)"
-          style="cursor: pointer;"
+          style="cursor: pointer"
         />
-        <h3 (click)="verDetalhes(p)" style="cursor: pointer;">{{ p.nome }}</h3>
+        <h3 (click)="verDetalhes(p)" style="cursor: pointer">{{ p.nome }}</h3>
         <p>{{ p.artista }}</p>
-        <strong class="preco">R$ {{ p.preco | number: '1.2-2' }}</strong>
+        <strong class="preco">R$ {{ p.preco | number : '1.2-2' }}</strong>
 
         <button class="btn-adicionar" (click)="adicionarAoCarrinho(p)">
           Adicionar ao Carrinho
@@ -67,9 +61,7 @@
     </div>
 
     <div class="ver-catalogo-container">
-      <a routerLink="/catalogo" class="btn-catalogo">
-        🎵 Ver Catálogo Completo
-      </a>
+      <a routerLink="/catalogo" class="btn-catalogo"> 🎵 Ver Catálogo Completo </a>
     </div>
   </section>
 </main>
